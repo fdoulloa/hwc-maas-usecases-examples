@@ -1,0 +1,259 @@
+app:
+  description: demo
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: demo
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.17@f7a5c1d222d17ee419b17a80d6e4923838fe93788dc724a3af73fbc6990b3a32
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1782235423947-source-1782236237977-target
+      selected: false
+      source: '1782235423947'
+      sourceHandle: source
+      target: '1782236237977'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1782236237977-source-1782236348360-target
+      selected: false
+      source: '1782236237977'
+      sourceHandle: source
+      target: '1782236348360'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1782236348360-source-1782236535106-target
+      selected: false
+      source: '1782236348360'
+      sourceHandle: source
+      target: '1782236535106'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: Inicio
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          default: ''
+          hide: false
+          hint: ''
+          label: archivo
+          options: []
+          placeholder: ''
+          required: true
+          type: file
+          variable: archivo
+      height: 109
+      id: '1782235423947'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - file:
+            - '1782235423947'
+            - archivo
+            id: key-value-15
+            key: file
+            type: file
+            value: ''
+          - id: key-value-444
+            key: ''
+            type: text
+            value: ''
+          type: form-data
+        headers: X-API-Key:7d309c2f70f00cdda6aea466a09731eb949ec3e6bd9f28d81731cd9a99b9aec9
+        method: post
+        params: preprocess:true
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Solicitud HTTP
+        type: http-request
+        url: https://api.kromos.cl/ocr/api/v1/ocr?preprocess=true
+        variables: []
+      height: 154
+      id: '1782236237977'
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_config:
+          jinja2_variables: []
+        prompt_template:
+        - id: 89c156c3-a9e0-405a-b95a-c4b462f57c4a
+          role: system
+          text: 'Eres un extractor de datos. Del texto OCR que recibes, extrae los
+            siguientes campos y devuélvelos SOLO en JSON válido: { "nombre": "", "rut":
+            "", "fecha": "", "monto": "" } Si un campo no aparece en el texto, déjalo
+            como null.'
+        - edition_type: basic
+          id: 3c776544-61e4-498d-ae82-6c9ba0c594b8
+          role: user
+          text: '{{#1782236237977.body#}}'
+        selected: false
+        structured_output_enabled: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1782236348360'
+      position:
+        x: 684
+        y: 282
+      positionAbsolute:
+        x: 684
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '1782236348360'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: Salida
+        type: end
+      height: 88
+      id: '1782236535106'
+      position:
+        x: 986
+        y: 282
+      positionAbsolute:
+        x: 986
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 173.5
+      y: 62.07354736328125
+      zoom: 1
+  rag_pipeline_variables: []

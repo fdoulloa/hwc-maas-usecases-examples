@@ -1,0 +1,559 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: Support Ticket Assistant
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.17@f7a5c1d222d17ee419b17a80d6e4923838fe93788dc724a3af73fbc6990b3a32
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/maas:0.0.21@a2da7256f0beee1d0eadd4989f539b1c1d2725930764bf6ddbfa08ba2560bb28
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: b80d7ba7-2797-44bf-918c-dc1443e46785
+    name: TRIGGER_URL
+    selector:
+    - env
+    - TRIGGER_URL
+    value: https://dify.kromos.cl/triggers/webhook-debug/eGwh22NcAPXz7Qb0tvCWTbcp
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: end
+      id: 1764704597048-1764704702614-1764698124585-target
+      selected: false
+      source: '1764704597048'
+      sourceHandle: '1764704702614'
+      target: '1764698124585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: parameter-extractor
+      id: 1764704186267-source-1764706025832-target
+      selected: false
+      source: '1764704186267'
+      sourceHandle: source
+      target: '1764706025832'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1764704597048-2-1764706290694-target
+      selected: false
+      source: '1764704597048'
+      sourceHandle: '2'
+      target: '1764706290694'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: question-classifier
+      id: 1764706025832-source-1764704597048-target
+      selected: false
+      source: '1764706025832'
+      sourceHandle: source
+      target: '1764704597048'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1764704597048-1-1778124030579-target
+      selected: false
+      source: '1764704597048'
+      sourceHandle: '1'
+      target: '1778124030579'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1778124030579-source-1778123859707-target
+      selected: false
+      source: '1778124030579'
+      sourceHandle: source
+      target: '1778123859707'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1764706290694-source-1782332184373-target
+      selected: false
+      source: '1764706290694'
+      sourceHandle: source
+      target: '1782332184373'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1778123859707-source-1782332193989-target
+      selected: false
+      source: '1778123859707'
+      sourceHandle: source
+      target: '1782332193989'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: trigger-webhook
+        targetType: code
+      id: 1782339487789-source-1764704186267-target
+      selected: false
+      source: '1782339487789'
+      sourceHandle: source
+      target: '1764704186267'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        outputs:
+        - value_selector:
+          - '1764706025832'
+          - description
+          value_type: string
+          variable: answer
+        selected: false
+        title: Output
+        type: end
+      height: 88
+      id: '1764698124585'
+      position:
+        x: 1437.1736432145924
+        y: 563.2475576616865
+      positionAbsolute:
+        x: 1437.1736432145924
+        y: 563.2475576616865
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(arg1):\n    # Mapping each field from the input arg1\n   \
+          \ # Using .get() ensures the function won't crash if a field is missing\n\
+          \    ticket_number = arg1.get(\"ticket_number\", \"N/A\")\n    title = arg1.get(\"\
+          title\", \"N/A\")\n    body = arg1.get(\"body\", \"N/A\")\n    priority\
+          \ = arg1.get(\"priority\", \"N/A\")\n    submitter = arg1.get(\"submitter\"\
+          , \"N/A\")\n    status = arg1.get(\"status\", \"N/A\")\n    created_at =\
+          \ arg1.get(\"created_at\", \"N/A\")\n    submitter_email = arg1.get(\"submitter_email\"\
+          , \"N/A\")\n\n    # Creating a single string containing all the data\n \
+          \   # We use f-strings for a clean, readable format\n    ticket_string =\
+          \ (\n        f\"Ticket: {ticket_number}\\n\"\n        f\"Title: {title}\\\
+          n\"\n        f\"Description: {body}\\n\"\n        f\"Priority: {priority}\\\
+          n\"\n        f\"Submitter: {submitter}\\n\"\n        f\"Status: {status}\\\
+          n\"\n        f\"Created At: {created_at}\"\n        f\"Submitter Email:\
+          \ {submitter_email}\\n\"\n    )\n\n    # Return the string wrapped in the\
+          \ result key\n    return {\n        \"result\": ticket_string\n    }"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Code 2
+        type: code
+        variables:
+        - value_selector:
+          - '1782339487789'
+          - _webhook_raw
+          value_type: object
+          variable: arg1
+      height: 52
+      id: '1764704186267'
+      position:
+        x: 378.58187402025703
+        y: 432.80996245796524
+      positionAbsolute:
+        x: 378.58187402025703
+        y: 432.80996245796524
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        classes:
+        - id: '1'
+          name: Technical problems, bugs, or things not working as intended
+        - id: '2'
+          name: Requests for new features, improvements, or changes to existing functionality
+        - id: '1764704702614'
+          name: Other
+        instruction: 'You are a highly accurate Support & Product Strategy Classifier.
+          Your task is to analyze incoming user inquiries and categorize them into
+          one of three specific buckets to ensure they are routed to the correct department.
+
+          Classification Categories
+
+          Issues
+
+          Technical problems, bugs, or things not working as intended.
+
+          "Error," "broken," "not loading," "failed," "bug," "help," "crash."
+
+          Product Requirement
+
+          Requests for new features, improvements, or changes to existing functionality.
+
+          "I wish," "Can you add," "feature request," "it would be better if," "suggest."
+
+          Other
+
+          General inquiries, greetings, spam, or feedback that doesn''t fit above.
+
+          "Hello," "Pricing info," "Thank you," "Who are you?", "Partnership."'
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        query_variable_selector:
+        - '1764706025832'
+        - description
+        selected: false
+        title: Question Classifier
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 220
+      id: '1764704597048'
+      position:
+        x: 1004.1005475092725
+        y: 282
+      positionAbsolute:
+        x: 1004.1005475092725
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: ''
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        parameters:
+        - description: ticket description
+          name: description
+          required: false
+          type: string
+        - description: email_address
+          name: email_address
+          required: false
+          type: string
+        - description: ticket_name
+          name: ticket_name
+          required: false
+          type: string
+        - description: ticket number
+          name: ticket_number
+          required: false
+          type: string
+        query:
+        - '1764704186267'
+        - result
+        reasoning_mode: prompt
+        selected: false
+        title: Parameter Extractor
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1764706025832'
+      position:
+        x: 675.6671312426774
+        y: 415.3572803638617
+      positionAbsolute:
+        x: 675.6671312426774
+        y: 415.3572803638617
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1764706025832'
+          - description
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 91455478-246a-45ad-ab90-f10e53338a2b
+          role: system
+          text: 'You are an email writer. Write a professional email to our marketing
+            team based on the following content: {{#1764706025832.description#}}'
+        selected: false
+        title: LLM - Email Maker
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1764706290694'
+      position:
+        x: 1437.1736432145924
+        y: 432.80996245796524
+      positionAbsolute:
+        x: 1437.1736432145924
+        y: 432.80996245796524
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1778124030579'
+          - result
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 987aaa82-24d4-45f7-a343-e753f66ae5c6
+          role: system
+          text: Based on {{#context#}}, provide a brief suggestion for the issue described
+            in {{#1764706025832.description#}}.
+        selected: false
+        title: LLM - L1 Support Assistant
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1778123859707'
+      position:
+        x: 1810.55849512291
+        y: 185.01415649069895
+      positionAbsolute:
+        x: 1810.55849512291
+        y: 185.01415649069895
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        dataset_ids:
+        - V9BsOtba3c2DchGz7OmK/i3BJCT70IRZJ3IBiN4jt5w1LyuI6+HHlka9yJbsS1VK
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: bge-reranker-v2-m3
+            provider: langgenius/maas/huaweicloud_maas
+          score_threshold: null
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0
+            vector_setting:
+              embedding_model_name: qwen3-embedding:8b
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 1
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1764706025832'
+        - description
+        retrieval_mode: multiple
+        selected: false
+        title: Huawei Cloud Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 90
+      id: '1778124030579'
+      position:
+        x: 1430.825098994774
+        y: 273.5953802090777
+      positionAbsolute:
+        x: 1430.825098994774
+        y: 273.5953802090777
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '1764706290694'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: Salida 2
+        type: end
+      height: 88
+      id: '1782332184373'
+      position:
+        x: 1856.7685214289745
+        y: 591.5056176843339
+      positionAbsolute:
+        x: 1856.7685214289745
+        y: 591.5056176843339
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '1778123859707'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: Salida 3
+        type: end
+      height: 88
+      id: '1782332193989'
+      position:
+        x: 2239.4161504658728
+        y: 185.01415649069895
+      positionAbsolute:
+        x: 2239.4161504658728
+        y: 185.01415649069895
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        async_mode: true
+        body: []
+        content_type: application/json
+        headers: []
+        method: POST
+        params: []
+        response_body: ''
+        selected: false
+        status_code: 200
+        title: Disparador de Webhook 2
+        type: trigger-webhook
+        variables:
+        - label: raw
+          required: true
+          value_selector: []
+          value_type: object
+          variable: _webhook_raw
+        webhook_debug_url: ''
+        webhook_url: ''
+      height: 130
+      id: '1782339487789'
+      position:
+        x: 82.12192592037769
+        y: 381.67938331304873
+      positionAbsolute:
+        x: 82.12192592037769
+        y: 381.67938331304873
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 110.70584162359614
+      y: 95.03029292748425
+      zoom: 0.565357198341412
+  rag_pipeline_variables: []
